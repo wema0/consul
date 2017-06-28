@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20190205131722) do
+=======
+ActiveRecord::Schema.define(version: 20170628211547) do
+>>>>>>> e482c3ce21... Add ballot_lines_count counter_cache to ballot -> ballot line relationship
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -140,8 +144,9 @@ ActiveRecord::Schema.define(version: 20190205131722) do
   create_table "budget_ballots", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "budget_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "ballot_lines_count", default: 0
   end
 
   create_table "budget_content_blocks", force: :cascade do |t|
@@ -187,8 +192,13 @@ ActiveRecord::Schema.define(version: 20190205131722) do
 
   create_table "budget_headings", force: :cascade do |t|
     t.integer "group_id"
+<<<<<<< HEAD
     t.string  "name",                 limit: 50
     t.integer "price",                limit: 8
+=======
+    t.string  "name",       limit: 50
+    t.integer "price",      limit: 8
+>>>>>>> e482c3ce21... Add ballot_lines_count counter_cache to ballot -> ballot line relationship
     t.integer "population"
     t.string  "slug"
     t.boolean "allow_custom_content",            default: false
