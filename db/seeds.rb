@@ -8,7 +8,10 @@ if Administrator.count == 0 && !Rails.env.test?
 end
 
 Setting.reset_defaults
-Tenant.create(name: "CONSUL", title: "CONSUL",  subdomain: "public", postal_code: "280")
+
+if Apartment::Tenant.current == "public"
+  Tenant.create(name: "CONSUL", title: "CONSUL",  subdomain: "public", postal_code: "280")
+end
 
 WebSection.create(name: "homepage")
 WebSection.create(name: "debates")
