@@ -9,8 +9,8 @@ KnapsackPro.load_tasks if defined?(KnapsackPro)
 require 'github_changelog_generator/task'
 
 GitHubChangelogGenerator::RakeTask.new :changelog do |config|
-  config.since_tag = 'v0.14'
-  config.future_release = 'v0.15'
+  config.since_tag = 'v0.16'
+  config.future_release = 'v0.17'
   config.base = "#{Rails.root}/CHANGELOG.md"
   config.token = Rails.application.secrets.github_changelog_token
 end
