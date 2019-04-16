@@ -1,0 +1,5 @@
+user=consul
+project=consul
+since_tag=v0.19
+future_release=v0.20
+max_issues=0
