@@ -76,21 +76,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+- **Admin:** Add cards to custom pages [\#3149](https://github.com/consul/consul/pull/3149)
 - **Design/UX:** Refactor processes header colors and custom pages [\#3249](https://github.com/consul/consul/pull/3249)
-- **Legislation:** Legislation process homepage phase [\#3188](https://github.com/consul/consul/pull/3188)
+- **Legislation:** Add image to legislation processes and banner colors [\#3152](https://github.com/consul/consul/pull/3152)
 - **Mails:** Configurable email interceptor by environment [\#3251](https://github.com/consul/consul/pull/3251)
+- **Maintenance-Rubocop:** Enable useless assignment rubocop rule [\#3120](https://github.com/consul/consul/pull/3120)
 - **Maintenance-Rubocop:** Fix literal as condition [\#3313](https://github.com/consul/consul/pull/3313)
 - **Milestones:** Manage milestone progress bars [\#3195](https://github.com/consul/consul/pull/3195)
 - **Milestones:** Refactor milestones css [\#3196](https://github.com/consul/consul/pull/3196)
 - **Milestones:** Add progress bar dev seeds [\#3197](https://github.com/consul/consul/pull/3197)
 - **Milestones:** Add progress bars to milestones public view [\#3228](https://github.com/consul/consul/pull/3228)
-- **Multi-language:** Pananoid translations \(Translations soft deletion\) [\#3201](https://github.com/consul/consul/pull/3201)
-- **Multi-language:** Globalize and I18n fallbacks [\#3239](https://github.com/consul/consul/pull/3239)
-- **Multi-language:** Adapt translatable shared specs [\#3240](https://github.com/consul/consul/pull/3240)
-- **Multi-language:** Adapt suggest script for translations [\#3241](https://github.com/consul/consul/pull/3241)
-- **Multi-language:** Translations sanitization [\#3242](https://github.com/consul/consul/pull/3242)
 - **Multi-language:** Make budgets translatable [\#3296](https://github.com/consul/consul/pull/3296)
-- **Multi-language:** Avoid exception on paranoid translations migrations [\#3311](https://github.com/consul/consul/pull/3311)
 - **Polls:** Add a description for open polls [\#3303](https://github.com/consul/consul/pull/3303)
 - **Translations:** add new Russian translation [\#3204](https://github.com/consul/consul/pull/3204)
 - **Translations:** add new Russian translation [\#3205](https://github.com/consul/consul/pull/3205)
@@ -121,6 +117,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
+- **Admin:** Admin tables order - sorting [\#3148](https://github.com/consul/consul/pull/3148)
 - **Admin:** Hide polls results and stats to admins [\#3229](https://github.com/consul/consul/pull/3229)
 - **Admin:** Allow change map image from admin [\#3230](https://github.com/consul/consul/pull/3230)
 - **Admin:** Allow admins delete poll answer documents [\#3231](https://github.com/consul/consul/pull/3231)
@@ -128,7 +125,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **Admin:** Show all system emails in Admin section [\#3326](https://github.com/consul/consul/pull/3326)
 - **Admin:** Improve Admin settings section [\#3328](https://github.com/consul/consul/pull/3328)
 - **Budgets:** Show current phase as selected on phase select on admin budgets form [\#3203](https://github.com/consul/consul/pull/3203)
-- **Budgets:** Do not display alert when supporting in a group with a single heading [\#3278](https://github.com/consul/consul/pull/3278
+- **Budgets:** Do not display alert when supporting in a group with a single heading [\#3278](https://github.com/consul/consul/pull/3278)
 - **Budgets:** Include heading names in "headings limit reached" alert  [\#3290](https://github.com/consul/consul/pull/3290)
 - **Budgets:** Consider having valuator group as having valuator [\#3314](https://github.com/consul/consul/pull/3314)
 - **Budgets:** Show all investments in the map [\#3318](https://github.com/consul/consul/pull/3318)
@@ -142,7 +139,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **Legislation:** Remove help and recommendations on legislation proposal new form [\#3200](https://github.com/consul/consul/pull/3200)
 - **Legislation:** Sort Legislation Processes by descending start date [\#3202](https://github.com/consul/consul/pull/3202)
 - **Maps:** Always show markers on budgets index map [\#3267](https://github.com/consul/consul/pull/3267)
-- **Maintenance-Gems:** Update globalize gem [\#3194](https://github.com/consul/consul/pull/3194)
+- **Maintenance-Refactorings:** Add pending specs proposal notification limits [\#3174](https://github.com/consul/consul/pull/3174)
+- **Maintenance-Refactorings:** Refactors images attributes [\#3170](https://github.com/consul/consul/pull/3170)
 - **Maintenance-Refactorings:** Use find instead of find\_by\_id [\#3234](https://github.com/consul/consul/pull/3234)
 - **Maintenance-Refactorings:** LegacyLegislation migration cleanup [\#3275](https://github.com/consul/consul/pull/3275)
 - **Maintenance-Refactorings:** Replace sccs lint string quotes to double quotes [\#3281](https://github.com/consul/consul/pull/3281)
@@ -164,7 +162,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - **Translations:** Fix i18n and UI minor details [\#3191](https://github.com/consul/consul/pull/3191)
 - **Translations:** Return a String in I18n method 'pluralize' [\#3307](https://github.com/consul/consul/pull/3307)
 
-## [0.18.1](https://github.com/consul/consul/tree/v0.18.1) (2019-01-17)
+## [0.18.1](https://github.com/consul/consul/compare/v0.18...v0.18.1) (2019-01-17)
 
 ### Added
 
@@ -798,8 +796,3 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [0.10.0]: https://github.com/consul/consul/compare/v0.9...v0.10
 [0.9.0]: https://github.com/consul/consul/compare/v0.8...v0.9
 [0.8.0]: https://github.com/consul/consul/compare/v0.7...v0.8
-
-
-\* *This Change Log was automatically generated by [github_changelog_generator](https://github.com/skywinder/Github-Changelog-Generator)*
-
-\* *This Change Log was automatically generated by [github_changelog_generator](https://github.com/skywinder/Github-Changelog-Generator)*
