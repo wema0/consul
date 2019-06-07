@@ -3,6 +3,9 @@ require "application_responder"
 class ApplicationController < ActionController::Base
   include HasFilters
   include HasOrders
+  include AccessDeniedHandler
+
+  protect_from_forgery with: :exception
 
   before_action :authenticate_http_basic, if: :http_basic_auth_site?
 
@@ -10,18 +13,10 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
   before_action :track_email_campaign
   before_action :set_return_url
+  before_action :set_fallbacks_to_all_available_locales
 
   check_authorization unless: :devise_controller?
   self.responder = ApplicationResponder
-
-  protect_from_forgery with: :exception
-
-  rescue_from CanCan::AccessDenied do |exception|
-    respond_to do |format|
-      format.html { redirect_to main_app.root_url, alert: exception.message }
-      format.json { render json: {error: exception.message}, status: :forbidden }
-    end
-  end
 
   layout :set_layout
   respond_to :html
@@ -78,10 +73,6 @@ class ApplicationController < ActionController::Base
       @proposal_votes = current_user ? current_user.proposal_votes(proposals) : {}
     end
 
-    def set_spending_proposal_votes(spending_proposals)
-      @spending_proposal_votes = current_user ? current_user.spending_proposal_votes(spending_proposals) : {}
-    end
-
     def set_comment_flags(comments)
       @comment_flags = current_user ? current_user.comment_flags(comments) : {}
     end
@@ -127,5 +118,9 @@ class ApplicationController < ActionController::Base
 
     def current_budget
       Budget.current
+    end
+
+    def set_fallbacks_to_all_available_locales
+      Globalize.set_fallbacks_to_all_available_locales
     end
 end

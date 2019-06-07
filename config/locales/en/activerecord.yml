@@ -1,4 +1,8 @@
 en:
+  attributes:
+    results_enabled: "Show results"
+    stats_enabled: "Show stats"
+    advanced_stats_enabled: "Show advanced stats"
   activerecord:
     models:
       activity:
@@ -67,9 +71,6 @@ en:
       proposal:
         one: "Citizen proposal"
         other: "Citizen proposals"
-      spending_proposal:
-        one: "Investment project"
-        other: "Investment projects"
       site_customization/page:
         one: Custom page
         other: Custom pages
@@ -79,6 +80,9 @@ en:
       site_customization/content_block:
         one: Custom content block
         other: Custom content blocks
+      document:
+        one: Document
+        other: Documents
       legislation/process:
         one: "Process"
         other: "Processes"
@@ -112,6 +116,15 @@ en:
       proposal_notification:
         one: "Proposal notification"
         other: "Proposal notifications"
+      dashboard/action:
+        one: Proposal dashboard action
+        other: Proposal dashboard actions
+      dashboard/administrator_task:
+        one: Task
+        other: Tasks
+      link:
+        one: Link
+        other: Links
     attributes:
       budget:
         name: "Name"
@@ -171,6 +184,7 @@ en:
         title: "Title"
         question: "Question"
         description: "Description"
+        selected: "Mark as selected"
         terms_of_service: "Terms of service"
       user:
         login: "Email or username"
@@ -186,13 +200,6 @@ en:
       organization:
         name: "Name of organisation"
         responsible_name: "Person responsible for the group"
-      spending_proposal:
-        administrator_id: "Administrator"
-        association_name: "Association name"
-        description: "Description"
-        external_url: "Link to additional documentation"
-        geozone_id: "Scope of operation"
-        title: "Title"
       poll:
         name: "Name"
         starts_at: "Start Date"
@@ -328,6 +335,23 @@ en:
         link_text: Link text
       widget/feed:
         limit: Number of items
+      dashboard/action:
+        title: Title
+        short_description: Short description
+        description: Description
+        link: External link
+        request_to_administrators: Include in the resource a button to request the resource from administrators
+        day_offset: How many days after the creation of the proposal do you want it to be activated?
+        required_supports: How much supports does the proposal have to get in order to be activated?
+        order: You can enter the position where this action will be shown to the user in the list of actions
+        active: Active
+        action_type: Type
+      dashboard/administrator_task:
+        source: Source
+        user: Executed by
+      link:
+        label: Title
+        url: Link
     errors:
       models:
         user:
@@ -406,6 +430,7 @@ en:
               cannot_comment_valuation: "You cannot comment a valuation"
       messages:
         record_invalid: "Validation failed: %{errors}"
+        another_poll_active: There is another poll active for the given period
         restrict_dependent_destroy:
           has_one: "Cannot delete record because a dependent %{record} exists"
           has_many: "Cannot delete record because dependent %{record} exist"

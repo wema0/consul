@@ -1,4 +1,4 @@
-class Poll::Question < ActiveRecord::Base
+class Poll::Question < ApplicationRecord
   include Measurable
   include Searchable
 
@@ -13,13 +13,15 @@ class Poll::Question < ActiveRecord::Base
 
   has_many :comments, as: :commentable
   has_many :answers, class_name: "Poll::Answer"
-  has_many :question_answers, -> { order "given_order asc" }, class_name: "Poll::Question::Answer"
+  has_many :question_answers, -> { order "given_order asc" }, class_name: "Poll::Question::Answer", dependent: :destroy
   has_many :partial_results
   belongs_to :proposal
 
   validates_translation :title, presence: true, length: { minimum: 4 }
   validates :author, presence: true
-  validates :poll_id, presence: true
+  validates :poll_id, presence: true, if: Proc.new { |question| question.poll.nil? }
+
+  accepts_nested_attributes_for :question_answers, reject_if: :all_blank, allow_destroy: true
 
   scope :by_poll_id,    ->(poll_id) { where(poll_id: poll_id) }
 
@@ -57,7 +59,10 @@ class Poll::Question < ActiveRecord::Base
   end
 
   def answers_total_votes
-    question_answers.map { |a| Poll::Answer.where(question_id: self, answer: a.title).count }.sum
+    question_answers.inject(0) { |total, question_answer| total + question_answer.total_votes }
   end
 
+  def most_voted_answer_id
+    question_answers.max_by { |answer| answer.total_votes }.id
+  end
 end

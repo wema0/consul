@@ -2,6 +2,8 @@ FactoryBot.define do
   factory :poll do
     sequence(:name) { |n| "Poll #{SecureRandom.hex}" }
 
+    slug "this-is-a-slug"
+
     starts_at { 1.month.ago }
     ends_at { 1.month.from_now }
 
@@ -42,6 +44,7 @@ FactoryBot.define do
     association :question, factory: :poll_question
     sequence(:title) { |n| "Answer title #{n}" }
     sequence(:description) { |n| "Answer description #{n}" }
+    sequence(:given_order) { |n| n }
   end
 
   factory :poll_answer_video, class: "Poll::Question::Answer::Video" do
@@ -85,10 +88,12 @@ FactoryBot.define do
   end
 
   factory :poll_voter, class: "Poll::Voter" do
-    poll
     association :user, :level_two
     from_web
 
+    transient { budget nil }
+
+    poll { budget&.poll || association(:poll, budget: budget) }
     trait :from_web do
       origin "web"
       token SecureRandom.hex(32)

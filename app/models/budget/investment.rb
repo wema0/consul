@@ -1,5 +1,5 @@
 class Budget
-  class Investment < ActiveRecord::Base
+  class Investment < ApplicationRecord
     SORTING_OPTIONS = {id: "id", title: "title", supports: "cached_votes_up"}.freeze
 
     include Rails.application.routes.url_helpers
@@ -13,9 +13,6 @@ class Budget
     include Imageable
     include Mappable
     include Documentable
-    documentable max_documents_allowed: 3,
-                 max_file_size: 3.megabytes,
-                 accepted_content_types: [ "application/pdf" ]
 
     acts_as_votable
     acts_as_paranoid column: :hidden_at
@@ -109,11 +106,11 @@ class Budget
     end
 
     def self.filter_params(params)
-      params.select{ |x, _| %w{heading_id group_id administrator_id tag_name valuator_id}.include?(x.to_s) }
+      params.permit(%i[heading_id group_id administrator_id tag_name valuator_id])
     end
 
     def self.scoped_filter(params, current_filter)
-      budget  = Budget.find_by(slug: params[:budget_id]) || Budget.find_by(id: params[:budget_id])
+      budget  = Budget.find_by_slug_or_id params[:budget_id]
       results = Investment.by_budget(budget)
 
       results = results.where("cached_votes_up + physical_votes >= ?",
@@ -368,13 +365,19 @@ class Budget
     end
 
     def self.with_milestone_status_id(status_id)
-      joins(:milestones).includes(:milestones).select do |investment|
+      includes(milestones: :translations).select do |investment|
         investment.milestone_status_id == status_id.to_i
       end
     end
 
     def milestone_status_id
       milestones.published.with_status.order_by_publication_date.last&.status_id
+    end
+
+    def admin_and_valuator_users_associated
+      valuator_users = (valuator_groups.map(&:valuators) + valuators).flatten
+      all_users = valuator_users << administrator
+      all_users.compact.uniq
     end
 
     private

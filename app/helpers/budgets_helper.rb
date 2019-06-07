@@ -12,7 +12,8 @@ module BudgetsHelper
   end
 
   def csv_params
-    csv_params = params.clone.merge(format: :csv).symbolize_keys
+    csv_params = params.clone.merge(format: :csv)
+    csv_params = csv_params.to_unsafe_h.map { |k, v| [k.to_sym, v] }.to_h
     csv_params.delete(:page)
     csv_params
   end
@@ -41,10 +42,6 @@ module BudgetsHelper
     else
       vote_budget_investment_path(investment.budget, investment, options)
     end
-  end
-
-  def display_budget_countdown?(budget)
-    budget.balloting?
   end
 
   def css_for_ballot_heading(heading)
@@ -107,5 +104,19 @@ module BudgetsHelper
                               starts_at: balloting_phase.starts_at,
                               ends_at:   balloting_phase.ends_at }),
             method: :post
+  end
+
+  def budget_subnav_items_for(budget)
+    {
+      results:    t("budgets.results.link"),
+      stats:      t("stats.budgets.link"),
+      executions: t("budgets.executions.link")
+    }.select { |section, _| can?(:"read_#{section}", budget) }.map do |section, text|
+      {
+        text: text,
+        url:  send("budget_#{section}_path", budget),
+        active: controller_name == section.to_s
+      }
+    end
   end
 end
