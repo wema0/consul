@@ -67,7 +67,7 @@ en:
       most_commented: Most commented
     select_order: Sort by
     show:
-      return_to_commentable: 'Go back to '
+      return_to_commentable: "Go back to "
   comments_helper:
     comment_button: Publish comment
     comment_link: Comment
@@ -219,7 +219,7 @@ en:
       available_locales: Available languages
       collaborative_legislation: Collaborative legislation
       debates: Debates
-      locale: 'Language:'
+      locale: "Language:"
       logo: CONSUL logo
       management: Management
       moderation: Moderation
@@ -241,7 +241,7 @@ en:
         notifications: Notifications
         no_notifications: "You don't have new notifications"
     admin:
-      watch_form_message: 'You have unsaved changes. Do you confirm to leave the page?'
+      watch_form_message: "You have unsaved changes. Do you confirm to leave the page?"
   notifications:
     index:
       empty_notifications: You don't have new notifications.
@@ -368,7 +368,7 @@ en:
         one: " containing the term <strong>'%{search_term}'</strong>"
         other: " containing the term <strong>'%{search_term}'</strong>"
       select_order: Order by
-      select_order_long: 'You are viewing proposals according to:'
+      select_order_long: "You are viewing proposals according to:"
       start_proposal: Create a proposal
       title: Proposals
       top: Top weekly
@@ -418,7 +418,7 @@ en:
       successful: "This proposal has reached the required supports."
     show:
       author_deleted: User deleted
-      code: 'Proposal code:'
+      code: "Proposal code:"
       comments:
         one: 1 comment
         other: "%{count} comments"
@@ -443,7 +443,7 @@ en:
       form:
         submit_button: Save changes
     share:
-      message: "I supported the proposal %{summary} in %{handle}. If you're interested, support it too!"
+      message: "I supported the proposal %{title} in %{handle}. If you're interested, support it too!"
   polls:
     all: "All"
     no_dates: "no date assigned"
@@ -508,7 +508,6 @@ en:
         title: "Questions"
         most_voted_answer: "Most voted answer: "
   poll_questions:
-    create_question: "Create question"
     show:
       vote_answer: "Vote %{answer}"
       voted: "You have voted %{answer}"
@@ -524,29 +523,29 @@ en:
     show:
       back: "Go back to my activity"
   shared:
-    edit: 'Edit'
-    save: 'Save'
-    delete: 'Delete'
+    edit: "Edit"
+    save: "Save"
+    delete: "Delete"
     "yes": "Yes"
     "no": "No"
     search_results: "Search results"
     advanced_search:
-      author_type: 'By author category'
-      author_type_blank: 'Select a category'
-      date: 'By date'
-      date_placeholder: 'DD/MM/YYYY'
-      date_range_blank: 'Choose a date'
-      date_1: 'Last 24 hours'
-      date_2: 'Last week'
-      date_3: 'Last month'
-      date_4: 'Last year'
-      date_5: 'Customized'
-      from: 'From'
-      general: 'With the text'
-      general_placeholder: 'Write the text'
-      search: 'Filter'
-      title: 'Advanced search'
-      to: 'To'
+      author_type: "By author category"
+      author_type_blank: "Select a category"
+      date: "By date"
+      date_placeholder: "DD/MM/YYYY"
+      date_range_blank: "Choose a date"
+      date_1: "Last 24 hours"
+      date_2: "Last week"
+      date_3: "Last month"
+      date_4: "Last year"
+      date_5: "Customized"
+      from: "From"
+      general: "With the text"
+      general_placeholder: "Write the text"
+      search: "Filter"
+      title: "Advanced search"
+      to: "To"
     delete: Delete
     author_info:
       author_deleted: User deleted
@@ -629,8 +628,8 @@ en:
     instagram: "%{org} Instagram"
   spending_proposals:
     form:
-      association_name_label: 'If you propose in name of an assocation or collective add the name here'
-      association_name: 'Association name'
+      association_name_label: "If you propose in name of an assocation or collective add the name here"
+      association_name: "Association name"
       description: Description
       external_url: Link to additional documentation
       geozone: Scope of operation
@@ -663,7 +662,7 @@ en:
       start_new: Create spending proposal
     show:
       author_deleted: User deleted
-      code: 'Proposal code:'
+      code: "Proposal code:"
       share: Share
     wrong_price_format: Only integer numbers
     spending_proposal:
@@ -800,13 +799,14 @@ en:
       question: Do you already have an account in %{org_name}?
       title: Account verification
     welcome:
-      go_to_index: See proposals and debates
+      go_to_index: Not now, go to index page
+      start_using_consul: Go to index page
       title: Participate
       user_permission_debates: Participate on debates
       user_permission_info: With your account you can...
       user_permission_proposal: Create new proposals
       user_permission_support_proposal: Support proposals*
-      user_permission_verify: To perform all the actions verify your account.
+      user_permission_verify: "To perform the following actions verify your account."
       user_permission_verify_info: "* Only for users on Census."
       user_permission_verify_my_account: Verify my account
       user_permission_votes: Participate on final voting

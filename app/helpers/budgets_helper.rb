@@ -1,12 +1,12 @@
 module BudgetsHelper
 
   def show_links_to_budget_investments(budget)
-    ['balloting', 'reviewing_ballots', 'finished'].include? budget.phase
+    ["balloting", "reviewing_ballots", "finished"].include? budget.phase
   end
 
   def heading_name_and_price_html(heading, budget)
     content_tag :div do
-      concat(heading.name + ' ')
+      concat(heading.name + " ")
       concat(content_tag(:span, budget.formatted_heading_price(heading)))
     end
   end
@@ -95,5 +95,17 @@ module BudgetsHelper
     current_user &&
     !current_user.voted_in_group?(investment.group) &&
     investment.group.headings.count > 1
+  end
+
+  def link_to_create_budget_poll(budget)
+    balloting_phase = budget.phases.where(kind: "balloting").first
+
+    link_to t("admin.budgets.index.admin_ballots"),
+            admin_polls_path(poll: {
+                              name:      budget.name,
+                              budget_id: budget.id,
+                              starts_at: balloting_phase.starts_at,
+                              ends_at:   balloting_phase.ends_at }),
+            method: :post
   end
 end

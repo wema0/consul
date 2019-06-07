@@ -21,6 +21,8 @@ class Budget < ActiveRecord::Base
   has_many :headings, through: :groups
   has_many :phases, class_name: Budget::Phase
 
+  has_one :poll
+
   before_validation :sanitize_descriptions
 
   after_create :generate_phases
@@ -147,11 +149,11 @@ class Budget < ActiveRecord::Base
 
   def investments_orders
     case phase
-    when 'accepting', 'reviewing'
+    when "accepting", "reviewing"
       %w{random}
-    when 'publishing_prices', 'balloting', 'reviewing_ballots'
+    when "publishing_prices", "balloting", "reviewing_ballots"
       %w{random price}
-    when 'finished'
+    when "finished"
       %w{random}
     else
       %w{random confidence_score}

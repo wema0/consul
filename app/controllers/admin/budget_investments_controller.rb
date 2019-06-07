@@ -4,10 +4,8 @@ class Admin::BudgetInvestmentsController < Admin::BaseController
 
   feature_flag :budgets
 
-  has_orders %w{oldest}, only: [:show, :edit]
-  has_filters(%w{all without_admin without_valuator under_valuation
-                 valuation_finished winners},
-                 only: [:index, :toggle_selection])
+  has_orders %w[oldest], only: [:show, :edit]
+  has_filters %w[all], only: [:index, :toggle_selection]
 
   before_action :load_budget
   before_action :load_investment, only: [:show, :edit, :update, :toggle_selection]
@@ -21,7 +19,7 @@ class Admin::BudgetInvestmentsController < Admin::BaseController
       format.js
       format.csv do
         send_data Budget::Investment::Exporter.new(@investments).to_csv,
-                  filename: 'budget_investments.csv'
+                  filename: "budget_investments.csv"
       end
     end
   end
@@ -71,7 +69,7 @@ class Admin::BudgetInvestmentsController < Admin::BaseController
     end
 
     def resource_name
-      resource_model.parameterize('_')
+      resource_model.parameterize("_")
     end
 
     def load_investments
