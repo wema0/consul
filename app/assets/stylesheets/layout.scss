@@ -341,6 +341,7 @@ a {
   clear: both;
   color: $text-medium;
   display: inline-block;
+  padding-right: $line-height / 2;
 }
 
 .back:not([class^="icon-"]) {
@@ -2179,7 +2180,6 @@ table {
 .flag-disable,
 .flag-active {
   line-height: 0;
-  vertical-align: sub;
 }
 
 .flag-disable {
