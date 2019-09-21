@@ -166,6 +166,10 @@ FactoryBot.define do
       administrator
     end
 
+    trait :with_valuator do
+      valuators { [create(:valuator)] }
+    end
+
     trait :flagged do
       after :create do |investment|
         Flag.flag(create(:user), investment)
