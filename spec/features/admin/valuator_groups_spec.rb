@@ -80,10 +80,10 @@ describe "Valuator groups" do
   end
 
   context "Assign valuators to groups" do
+    let(:valuator) { create(:valuator) }
 
     scenario "Add a valuator to a group" do
-      valuator = create(:valuator)
-      group = create(:valuator_group, name: "Health")
+      create(:valuator_group, name: "Health")
 
       visit edit_admin_valuator_path(valuator)
 
@@ -95,7 +95,6 @@ describe "Valuator groups" do
     end
 
     scenario "Update a valuator's group" do
-      valuator = create(:valuator)
       group1 = create(:valuator_group, name: "Health")
       group2 = create(:valuator_group, name: "Economy")
       valuator.update(valuator_group: group1)
@@ -109,7 +108,6 @@ describe "Valuator groups" do
     end
 
     scenario "Remove a valuator from a group" do
-      valuator = create(:valuator)
       group1 = create(:valuator_group, name: "Health")
       valuator.update(valuator_group: group1)
 
