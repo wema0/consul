@@ -9,6 +9,7 @@ describe Poll::Voter do
   let(:officer_assignment) { create(:poll_officer_assignment) }
 
   describe "validations" do
+    let(:user) { create(:user, :level_two) }
 
     it "is valid" do
       expect(voter).to be_valid
@@ -31,8 +32,6 @@ describe Poll::Voter do
     end
 
     it "is not valid if the user has already voted in the same poll or booth_assignment" do
-      user = create(:user, :level_two)
-
       voter1 = create(:poll_voter, user: user, poll: poll)
       voter2 = build(:poll_voter, user: user, poll: poll)
 
@@ -41,8 +40,6 @@ describe Poll::Voter do
     end
 
     it "is not valid if the user has already voted in the same poll/booth" do
-      user = create(:user, :level_two)
-
       voter1 = create(:poll_voter, user: user, poll: poll, booth_assignment: booth_assignment)
       voter2 = build(:poll_voter, user: user, poll: poll, booth_assignment: booth_assignment)
 
@@ -54,8 +51,6 @@ describe Poll::Voter do
       booth_assignment1 = create(:poll_booth_assignment, poll: poll)
       booth_assignment2 = create(:poll_booth_assignment, poll: poll)
 
-      user = create(:user, :level_two)
-
       voter1 = create(:poll_voter, user: user, poll: poll, booth_assignment: booth_assignment1)
       voter2 = build(:poll_voter, user: user, poll: poll, booth_assignment: booth_assignment2)
 
@@ -66,8 +61,6 @@ describe Poll::Voter do
     it "is valid if the user has already voted in the same booth in different poll" do
       booth_assignment1 = create(:poll_booth_assignment, booth: booth)
       booth_assignment2 = create(:poll_booth_assignment, booth: booth, poll: poll)
-
-      user = create(:user, :level_two)
 
       voter1 = create(:poll_voter, user: user, booth_assignment: booth_assignment1)
       voter2 = build(:poll_voter, user: user, booth_assignment: booth_assignment2)
