@@ -79,9 +79,11 @@ FactoryBot.define do
     end
 
     transient { voters { [] } }
+    transient { followers { [] } }
 
     after(:create) do |proposal, evaluator|
       evaluator.voters.each { |voter| create(:vote, votable: proposal, voter: voter) }
+      evaluator.followers.each { |follower| create(:follow, followable: proposal, user: follower) }
     end
 
     factory :retired_proposal, traits: [:retired]
