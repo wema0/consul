@@ -338,9 +338,8 @@ describe "Budget Investments" do
     scenario "Printing voted budget investments in balloting phase" do
       budget.update(phase: "balloting")
 
-      voted_investment = create(:budget_investment, :selected, heading: heading)
-      ballot = create(:budget_ballot, user: create(:user, :level_two), budget: budget)
-      ballot.investments << voted_investment
+      voted_investment = create(:budget_investment, :selected, heading: heading, balloters: [create(:user)])
+      create(:user, :level_two, ballot_lines: [voted_investment])
 
       click_link "Print budget investments"
 

@@ -186,10 +186,14 @@ FactoryBot.define do
 
     transient { voters { [] } }
     transient { followers { [] } }
+    transient { balloters { [] } }
 
     after(:create) do |investment, evaluator|
       evaluator.voters.each { |voter| create(:vote, votable: investment, voter: voter) }
       evaluator.followers.each { |follower| create(:follow, followable: investment, user: follower) }
+      evaluator.balloters.each do |balloter|
+        create(:budget_ballot_line, investment: investment, user: balloter)
+      end
     end
   end
 
