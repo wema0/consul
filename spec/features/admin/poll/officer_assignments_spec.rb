@@ -10,12 +10,9 @@ describe "Officer Assignments" do
   scenario "Index" do
     poll = create(:poll)
 
-    officer1 = create(:poll_officer)
-    officer2 = create(:poll_officer)
-    officer3 = create(:poll_officer)
-
-    officer_assignment = create(:poll_officer_assignment, poll: poll, officer: officer1)
-    officer_assignment_2 = create(:poll_officer_assignment, poll: poll, officer: officer2)
+    create(:poll_officer, polls: [poll])
+    create(:poll_officer, polls: [poll])
+    create(:poll_officer)
 
     visit admin_poll_path(poll)
 
@@ -35,12 +32,9 @@ describe "Officer Assignments" do
     user2 = create(:user, username: "John Silver")
     user3 = create(:user, username: "John Edwards")
 
-    officer1 = create(:poll_officer, user: user1)
-    officer2 = create(:poll_officer, user: user2)
+    officer1 = create(:poll_officer, user: user1, polls: [poll])
+    officer2 = create(:poll_officer, user: user2, polls: [poll])
     officer3 = create(:poll_officer, user: user3)
-
-    officer_assignment = create(:poll_officer_assignment, poll: poll, officer: officer1)
-    officer_assignment_2 = create(:poll_officer_assignment, poll: poll, officer: officer2)
 
     visit admin_poll_path(poll)
 

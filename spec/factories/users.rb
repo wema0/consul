@@ -110,6 +110,14 @@ FactoryBot.define do
 
   factory :poll_officer, class: "Poll::Officer" do
     user
+
+    transient { polls { [] } }
+
+    after(:create) do |officer, evaluator|
+      evaluator.polls.each do |poll|
+        create(:poll_officer_assignment, poll: poll, officer: officer)
+      end
+    end
   end
 
   factory :follow do
